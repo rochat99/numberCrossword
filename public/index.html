@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <title></title>
+</head>
+
+<body>
+  
+  <header>
+    <h2>Number Crossword</h2>
+    <a id="howTo">How To Play</a>
+    <section id="dropdown">
+      <p>Using the numbers in the number bank, fill out the puzzle! Each number has its own place.</p>
+      <p>If a number turns red, it means that number doesn't exist in the number bank.</p>
+      <p>You can toggle the Answer Check button to see if you got the numbers in the ri ght place. A red square means the number doesn't belong in that cell.</p>
+      <p>Click space to switch directions.</p>
+    </section>
+  </header>
+
+  <!-- I was having trouble with aligning this in desktop view so I had to jankily add all these nested divs I plan on using bootstrap to organize it better but for now this is what I got -->
+  <section id="noHeader">
+    <div id="puzzleAndButtons">
+      <div id="flexBox">
+        <section id="boxes"></section>
+      </div>
+      
+      <section id="buttons">
+        <button id="generatePuzzle">Generate Puzzle</button>
+        
+        <button id="answerCheck">Check: Off</button>
+        
+        <button id="clearGrid">Clear Grid</button>
+      </section>
+    </div>
+    
+    <div id="bankContainer">
+      <h2>Number Bank</h2>
+      <div id="numBank"></div>
+    </div>
+  <section>
+  
+  <script src="/assets/js/main.js"></script>
+</body>
+
+</html>
