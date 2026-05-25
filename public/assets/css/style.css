@@ -3,9 +3,20 @@
   box-sizing: border-box;
 }
 
+:root {
+  --red: #B11148;
+  --darkRed: #FF00004D;
+  --green: #A5D0D0;
+  --greenTransparent: #A5D0D020;
+  --darkGreen: #2F4F4F;
+  --darkGreenTransparent: #2F4F4F80;
+  --shadow: 0 5px 15px var(--darkGreenTransparent);
+}
+
 body {
   display: flex;
   flex-direction: column;
+  background-color: var(--greenTransparent);
 }
 
 header {
@@ -21,21 +32,75 @@ header > h2 {
   margin-bottom: 5px;
 }
 
+#howTo {
+  text-decoration: underline;
+}
+
 #dropdown {
   pointer-events: none;
-  transform: translateY(-100px);
-  max-height: 0;
+  
   width: 80vw;
+  padding: 20px;
+  
   opacity: 0;
-  transition: opacity 0.15s ease-in, max-height 0.25s ease-out, transform 0.6s ease-out;
+  background-color: white;
+  border: 5px solid var(--green);
+  border-radius: 20px;
+  
+  transition: opacity 0.3s ease-in, top 0.6s ease-out;
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+#dropdown p:last-child {
+  margin: 0;
+}
+
+#close {
+  margin: -15px 0 10px -5px;
+  color: black;
+  transition: color 0.2s ease;
+}
+
+#close:hover {
+  color: var(--red);
+  transition: color 0.2s ease;
 }
 
 #dropdown.open {
+  padding: 20px;
+  
   pointer-events: auto;
-  transform: translateY(0);
-  max-height: 100%;
+  top: 50%;
+  z-index: 10;
+  
   opacity: 1;
-  transition: opacity 0.3s ease-in, max-height 1s ease-out, transform 1s ease-out;
+  
+  transition: opacity 0.3s ease-in,top 0.6s ease-out;
+}
+
+#overlay {
+  background-color: rgba(0,0,0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  
+  opacity: 0;
+  pointer-events: none;
+  
+  transition: opacity 0.3s ease-in;
+}
+
+#overlay.darken {
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+  z-index: 9;
 }
 
 #flexBox {
@@ -47,35 +112,45 @@ header > h2 {
   display: grid;
   grid-template-columns: repeat(13,1fr);
   grid-template-rows: repeat(13,1fr);
-  width: 80vw;
+  
+  width: 90vw;
+  
+  border-radius: 10px;
   aspect-ratio: 1/1;
-  border: solid 1px darkslategrey;
- 
+  
+  border: solid 1px var(--darkGreen);
+  background-color: white;
+  box-shadow: var(--shadow);
 }
+
+#boxes .cell:first-child {border-top-left-radius: 8.5px;}
+#boxes .cell:nth-child(13) {border-top-right-radius: 8.5px;}
+#boxes .cell:nth-child(157) {border-bottom-left-radius: 8.5px;}
+#boxes .cell:last-child {border-bottom-right-radius: 8.5px;}
 
 .cell {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 1px darkslategrey;
+  border: solid 1px var(--darkGreen);
   width: 100%;
   height: 100%;
   aspect-ratio: 1/1;
 }
 
 .cell.wrong {
-  background-color: #FF00004D;
+  background-color: var(--darkRed);
 }
 
 .cell.null {
-  background-color: darkslategrey;
+  background-color: var(--darkGreen);
   width: 100%;
   height: 100%;
   aspect-ratio: 1/1
 }
 
 .cell.highlight {
-  background-color: #A5D0D0;
+  background-color: var(--green);
 }
 
 input {
@@ -108,29 +183,32 @@ input:focus {
 
 #buttons {
   display: flex;
-  justify-content: center;
-  margin: 10px 0;
+  justify-content: space-around;
+  margin: 20px 0 40px;
 }
 
 button {
   all:unset;
 
-  background-color: darkslategrey;
+  background-color: var(--darkGreen);
   color: whitesmoke;
-  height: 25px;
+  min-height: 25px;
+  max-height: auto;
   text-align: center;
   border-radius: 25px;
   transition: all 0.5s ease;
   margin: 0 10px;
-  padding: 3px 10px;
+  padding: 3px 15px;
+  box-shadow: var(--shadow);
+  font-size: 0.8rem;
 }
 
 button:hover {
-  background-color:#A5D0D0;
+  background-color:var(--darkGreenTransparent);
 }
 
 #answerCheck.active{
-  background-color: #B11148;
+  background-color: var(--red);
 }
 
 #bankContainer {
@@ -139,9 +217,28 @@ button:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: dashed 2px #A5D0D0;
-  padding: 8px 0 20px;
+  background-color: white;
+  border: solid 5px var(--darkGreen);
+  border-radius: 20px;
+  padding-bottom: 20px;
+  width: 90vw;
+  margin: 0 auto;
+  box-shadow: var(--shadow);
 }
+
+#bankContainer .header {
+  background-color: var(--darkGreen);
+  width: 100%;
+  height: 100%;
+  padding: 8px 0;
+  text-align: center;
+  border-radius: 5px 5px 0 0;
+}
+
+#bankContainer h2 {
+  color: white;
+}
+
 
 #numBank {
   column-count: 3;
@@ -170,11 +267,11 @@ p, a {
 }
 
 a {
-  color: darkslategray;
+  color: var(--darkGreen);
 }
 
 a:hover {
-  color: #A5D0D0;
+  color: var(--red);
 }
 
 ul {
@@ -231,7 +328,7 @@ ul {
   }
 
   #bankContainer {
-    justify-content: right;
+    justify-content: flex-end;
     width: 45vw;
   }
 
