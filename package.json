@@ -2,15 +2,23 @@
   "scripts": {
     "start": "lite-server --baseDir=\"public\""
   },
-  "dependencies": {
-    "lite-server": "^2.6.1"
-  },
   "name": "numbercrossword",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rochat99/numberCrossword.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/rochat99/numberCrossword/issues"
+  },
+  "homepage": "https://github.com/rochat99/numberCrossword#readme"
 }
