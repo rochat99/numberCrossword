@@ -1,26 +1,12 @@
 //BUTTONS
 
-//drop down menu
+//tutorial modal popup
 howTo.addEventListener("click", function() {
-    dropdown.classList.add("open")
-    overlay.classList.add("darken")
-    howTo.style.pointerEvents = "none"
-  }
-)
+  tutorialModal.showModal()
+})
 
 close.addEventListener("click", function() {
-      dropdown.classList.remove("open")
-      overlay.classList.remove("darken")
-      howTo.style.pointerEvents = "auto"
-  }
-)
-
-document.addEventListener("keydown", function(e) {
-  if (dropdown.classList.contains("open") && e.key === "Escape") {
-    dropdown.classList.remove("open")
-    overlay.classList.remove("darken")
-    howTo.style.pointerEvents = "auto"
-  }
+  tutorialModal.close()
 })
 
 //randomly selects one of the puzzle options

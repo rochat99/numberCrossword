@@ -115,8 +115,6 @@ function resetGridValidation() {
   })
 }
 
-
-
 //greys out used numbers and un-greys numbers when user deletes them from grid
 function applyGrey(myBank) {
   
@@ -242,3 +240,30 @@ function applyGrey(myBank) {
     }
   })
 }
+
+//when number bank tab is clicked or swiped, bank slides up/down 
+//define initial position of touch
+
+let startY
+let isOpen = false
+
+bankTab.addEventListener("touchstart", function(e) {
+  startY = e.touches[0].clientY
+})
+
+bankTab.addEventListener("touchend", function(e) {
+  
+  let touchToOpenCheck = e.changedTouches[0].clientY < startY - 20 || e.changedTouches[0].clientY === startY
+  let touchToCloseCheck = e.changedTouches[0].clientY > startY + 20 || e.changedTouches[0].clientY === startY
+  
+  if (touchToOpenCheck && isOpen === false) {
+    
+    bankContainer.style.transform = "translate(-50%, -3%)"
+    isOpen = true
+    
+  } else if (touchToCloseCheck && isOpen === true) {
+    
+    bankContainer.style.transform = "translate(-50%, 100%)"
+    isOpen = false
+  }
+})

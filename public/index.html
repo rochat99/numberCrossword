@@ -14,24 +14,23 @@
 
 <body>
   
+  <!--DIALOGS-->
+  <dialog id="tutorialModal">
+    <button id="close">x</button>
+    <p>Using the numbers in the number bank, fill out the puzzle! Each number has its own place.</p>
+    <p>If a number turns red, it means that number doesn't exist in the number bank.</p>
+    <p>Numbers in the bank will grey out once they've been used.</p>
+    <p>You can toggle the Answer Check button to see if you got the numbers in the right place. A red square means the number doesn't belong in that cell.</p>
+    <p>Click space to switch directions.</p>
+  </dialog>
+  
+  <dialog id="resultModal"></dialog>
+  
   <header>
     
     <h2>Number Crossword</h2>
     
     <a id="howTo">How To Play</a>
-    
-    <div id="overlay"></div>
-    
-    <section id="dropdown">
-      
-      <h3 id="close">x</h3>
-      <p>Using the numbers in the number bank, fill out the puzzle! Each number has its own place.</p>
-      <p>If a number turns red, it means that number doesn't exist in the number bank.</p>
-      <p>Numbers in the bank will grey out once they've been used.</p>
-      <p>You can toggle the Answer Check button to see if you got the numbers in the right place. A red square means the number doesn't belong in that cell.</p>
-      <p>Click space to switch directions.</p>
-      
-    </section>
     
   </header>
 
@@ -57,7 +56,36 @@
     
     <div id="bankContainer">
       
-      <div class="header">
+      <div id="bankTab">
+        <svg width="50" height="50" class="maskContainer top">
+          
+          <defs>
+            <mask id="topMask">
+              <rect width="50" height="50" fill="white"></rect>
+              
+              <path d="M0,0 H50 V50 H25 Q0,50 0,25 Z" fill="black"/>
+            </mask>
+          </defs>
+          
+          <rect width="50" height="50" class="underMask" mask="url(#topMask)"></rect>
+        </svg>
+        
+        <p>Number Bank</p>
+        
+        <svg width="50" height="50" class="maskContainer bot">
+          <defs>
+            <mask id="botMask">
+              <rect width="50" height="50" fill="white"></rect>
+              
+              <path d="M0,0 H50 V25 Q50,50 25,50 H0 Z" fill="black"/>
+            </mask>
+          </defs>
+          
+          <rect width="50" height="50" class="underMask" mask="url(#botMask)"></rect>
+        </svg>
+      </div>
+      
+      <div id="bankHeader">
         <h2>Number Bank</h2>
       </div>
       
@@ -72,6 +100,7 @@
   <script src="assets/js/highlight.js" ></script>
   <script src="assets/js/autoJump.js" ></script>
   <script src="assets/js/numberBank.js" ></script>
+  <script src="assets/js/completionCheck.js" ></script>
     
   </script>
 </body>

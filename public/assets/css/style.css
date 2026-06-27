@@ -3,6 +3,7 @@
   box-sizing: border-box;
 }
 
+/*VARIABLES*/
 :root {
   --red: #B11148;
   --darkRed: #FF00004D;
@@ -19,6 +20,7 @@ body {
   background-color: var(--greenTransparent);
 }
 
+/*HEADER*/
 header {
   display: flex;
   flex-direction: column;
@@ -36,33 +38,31 @@ header > h2 {
   text-decoration: underline;
 }
 
-#dropdown {
-  pointer-events: none;
-  
+#tutorialModal {
   width: 80vw;
-  padding: 20px;
-  
-  opacity: 0;
-  background-color: white;
+  padding: 15px 20px 20px 20px;
   border: 5px solid var(--green);
   border-radius: 20px;
-  
-  transition: opacity 0.3s ease-in, top 0.6s ease-out;
-  position: fixed;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
 }
 
-#dropdown p:last-child {
+#tutorialModal::backdrop {
+  background-color: rgba(0,0,0,0.5);
+  backdrop-filter: blur(1px);
+}
+
+#tutorialModal p:last-child {
   margin: 0;
 }
 
 #close {
-  margin: -15px 0 10px -5px;
+  font-size: 1.3rem;
+  font-style: bold;
+  background-color: transparent;
+  border: none;
+  margin: -20px 0 10px -10px;
   color: black;
   transition: color 0.2s ease;
+  box-shadow: none;
 }
 
 #close:hover {
@@ -70,39 +70,7 @@ header > h2 {
   transition: color 0.2s ease;
 }
 
-#dropdown.open {
-  padding: 20px;
-  
-  pointer-events: auto;
-  top: 50%;
-  z-index: 10;
-  
-  opacity: 1;
-  
-  transition: opacity 0.3s ease-in,top 0.6s ease-out;
-}
-
-#overlay {
-  background-color: rgba(0,0,0, 0.5);
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  padding: 0;
-  margin: 0;
-  top: 0;
-  
-  opacity: 0;
-  pointer-events: none;
-  
-  transition: opacity 0.3s ease-in;
-}
-
-#overlay.darken {
-  opacity: 1;
-  transition: opacity 0.3s ease-in;
-  z-index: 9;
-}
-
+/*PUZZLE GRID*/
 #flexBox {
   display: flex;
   justify-content: center;
@@ -181,6 +149,7 @@ input:focus {
   outline: none;
 }
 
+/*BUTTONS UNDER PUZZLE*/
 #buttons {
   display: flex;
   justify-content: space-around;
@@ -211,8 +180,10 @@ button:hover {
   background-color: var(--red);
 }
 
+
+/*NUMBER BANK*/
 #bankContainer {
-  position: relative;
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -222,23 +193,68 @@ button:hover {
   border-radius: 20px;
   padding-bottom: 20px;
   width: 90vw;
-  margin: 0 auto;
+  max-height: 90vh;
   box-shadow: var(--shadow);
+  
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  
+  transition: transform 0.7s ease;
 }
 
-#bankContainer .header {
+#bankHeader {
   background-color: var(--darkGreen);
   width: 100%;
   height: 100%;
   padding: 8px 0;
   text-align: center;
   border-radius: 5px 5px 0 0;
+  
+  display: none;
 }
+
+#bankTab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--darkGreen);
+  color: white;
+  
+  padding: 10px 15px;
+  border-radius: 15px 15px 0 0;
+  
+  position: absolute;
+ 
+  width: 250px;
+  height: 50px;
+  top: -50px;
+}
+
+#bankTab p {
+  margin: 0;
+}
+
+.maskContainer {
+  position: absolute;
+}
+
+.maskContainer.top {
+  left: 100%;
+}
+
+.maskContainer.bot {
+  right: 100%;
+}
+
+.underMask {
+  fill: var(--darkGreen);
+}
+
 
 #bankContainer h2 {
   color: white;
 }
-
 
 #numBank {
   column-count: 3;
@@ -327,10 +343,25 @@ ul {
     justify-content: center;
   }
 
-  #bankContainer {
+ /* #bankContainer {
     justify-content: flex-end;
     width: 45vw;
-  }
+  }*/
+  
+  #bankContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: white;
+  border: solid 5px var(--darkGreen);
+  border-radius: 20px;
+  padding-bottom: 20px;
+  width: 45vw;
+  margin: 0 auto;
+  box-shadow: var(--shadow);
+}
 
   #numBank {
   column-count: 4;
