@@ -3,11 +3,24 @@
   box-sizing: border-box;
 }
 
+/*VARIABLES*/
+:root {
+  --red: #B11148;
+  --darkRed: #FF00004D;
+  --green: #A5D0D0;
+  --greenTransparent: #A5D0D020;
+  --darkGreen: #2F4F4F;
+  --darkGreenTransparent: #2F4F4F80;
+  --shadow: 0 5px 15px var(--darkGreenTransparent);
+}
+
 body {
   display: flex;
   flex-direction: column;
+  background-color: var(--greenTransparent);
 }
 
+/*HEADER*/
 header {
   display: flex;
   flex-direction: column;
@@ -21,23 +34,43 @@ header > h2 {
   margin-bottom: 5px;
 }
 
-#dropdown {
-  pointer-events: none;
-  transform: translateY(-100px);
-  max-height: 0;
+#howTo {
+  text-decoration: underline;
+}
+
+#tutorialModal {
   width: 80vw;
-  opacity: 0;
-  transition: opacity 0.15s ease-in, max-height 0.25s ease-out, transform 0.6s ease-out;
+  padding: 15px 20px 20px 20px;
+  border: 5px solid var(--green);
+  border-radius: 20px;
 }
 
-#dropdown.open {
-  pointer-events: auto;
-  transform: translateY(0);
-  max-height: 100%;
-  opacity: 1;
-  transition: opacity 0.3s ease-in, max-height 1s ease-out, transform 1s ease-out;
+#tutorialModal::backdrop {
+  background-color: rgba(0,0,0,0.5);
+  backdrop-filter: blur(1px);
 }
 
+#tutorialModal p:last-child {
+  margin: 0;
+}
+
+#close {
+  font-size: 1.3rem;
+  font-style: bold;
+  background-color: transparent;
+  border: none;
+  margin: -20px 0 10px -10px;
+  color: black;
+  transition: color 0.2s ease;
+  box-shadow: none;
+}
+
+#close:hover {
+  color: var(--red);
+  transition: color 0.2s ease;
+}
+
+/*PUZZLE GRID*/
 #flexBox {
   display: flex;
   justify-content: center;
@@ -47,35 +80,45 @@ header > h2 {
   display: grid;
   grid-template-columns: repeat(13,1fr);
   grid-template-rows: repeat(13,1fr);
-  width: 80vw;
+  
+  width: 90vw;
+  
+  border-radius: 10px;
   aspect-ratio: 1/1;
-  border: solid 1px darkslategrey;
- 
+  
+  border: solid 1px var(--darkGreen);
+  background-color: white;
+  box-shadow: var(--shadow);
 }
+
+#boxes .cell:first-child {border-top-left-radius: 8.5px;}
+#boxes .cell:nth-child(13) {border-top-right-radius: 8.5px;}
+#boxes .cell:nth-child(157) {border-bottom-left-radius: 8.5px;}
+#boxes .cell:last-child {border-bottom-right-radius: 8.5px;}
 
 .cell {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid 1px darkslategrey;
+  border: solid 1px var(--darkGreen);
   width: 100%;
   height: 100%;
   aspect-ratio: 1/1;
 }
 
 .cell.wrong {
-  background-color: #FF00004D;
+  background-color: var(--darkRed);
 }
 
 .cell.null {
-  background-color: darkslategrey;
+  background-color: var(--darkGreen);
   width: 100%;
   height: 100%;
   aspect-ratio: 1/1
 }
 
 .cell.highlight {
-  background-color: #A5D0D0;
+  background-color: var(--green);
 }
 
 input {
@@ -106,41 +149,111 @@ input:focus {
   outline: none;
 }
 
+/*BUTTONS UNDER PUZZLE*/
 #buttons {
   display: flex;
-  justify-content: center;
-  margin: 10px 0;
+  justify-content: space-around;
+  margin: 20px 0 40px;
 }
 
 button {
   all:unset;
 
-  background-color: darkslategrey;
+  background-color: var(--darkGreen);
   color: whitesmoke;
-  height: 25px;
+  min-height: 25px;
+  max-height: auto;
   text-align: center;
   border-radius: 25px;
   transition: all 0.5s ease;
   margin: 0 10px;
-  padding: 3px 10px;
+  padding: 3px 15px;
+  box-shadow: var(--shadow);
+  font-size: 0.8rem;
 }
 
 button:hover {
-  background-color:#A5D0D0;
+  background-color:var(--darkGreenTransparent);
 }
 
 #answerCheck.active{
-  background-color: #B11148;
+  background-color: var(--red);
 }
 
+
+/*NUMBER BANK*/
 #bankContainer {
-  position: relative;
+  position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: dashed 2px #A5D0D0;
-  padding: 8px 0 20px;
+  background-color: white;
+  border: solid 5px var(--darkGreen);
+  border-radius: 20px;
+  padding-bottom: 20px;
+  width: 90vw;
+  max-height: 90vh;
+  box-shadow: var(--shadow);
+  
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  
+  transition: transform 0.7s ease;
+}
+
+#bankHeader {
+  background-color: var(--darkGreen);
+  width: 100%;
+  height: 100%;
+  padding: 8px 0;
+  text-align: center;
+  border-radius: 5px 5px 0 0;
+  
+  display: none;
+}
+
+#bankTab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--darkGreen);
+  color: white;
+  
+  padding: 10px 15px;
+  border-radius: 15px 15px 0 0;
+  
+  position: absolute;
+ 
+  width: 250px;
+  height: 50px;
+  top: -50px;
+}
+
+#bankTab p {
+  margin: 0;
+}
+
+.maskContainer {
+  position: absolute;
+}
+
+.maskContainer.top {
+  left: 100%;
+}
+
+.maskContainer.bot {
+  right: 100%;
+}
+
+.underMask {
+  fill: var(--darkGreen);
+}
+
+
+#bankContainer h2 {
+  color: white;
 }
 
 #numBank {
@@ -170,11 +283,11 @@ p, a {
 }
 
 a {
-  color: darkslategray;
+  color: var(--darkGreen);
 }
 
 a:hover {
-  color: #A5D0D0;
+  color: var(--red);
 }
 
 ul {
@@ -230,10 +343,25 @@ ul {
     justify-content: center;
   }
 
-  #bankContainer {
-    justify-content: right;
+ /* #bankContainer {
+    justify-content: flex-end;
     width: 45vw;
-  }
+  }*/
+  
+  #bankContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: white;
+  border: solid 5px var(--darkGreen);
+  border-radius: 20px;
+  padding-bottom: 20px;
+  width: 45vw;
+  margin: 0 auto;
+  box-shadow: var(--shadow);
+}
 
   #numBank {
   column-count: 4;
