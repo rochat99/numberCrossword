@@ -17,29 +17,30 @@ document.addEventListener("DOMContentLoaded", () => {
   generatePuzzle();
 });
 
-//DIVS
-const section = document.getElementById("boxes")
-const tutorialModal = document.getElementById("tutorialModal")
-const resultModal = document.getElementById("resultModal")
-const bankContainer = document.getElementById("bankContainer")
-const bankTab = document.getElementById("bankTab")
-const numBankDiv = document.getElementById("numBank")
+//DIVS + CONTAINERS
+const section = document.getElementById("boxes");
+const tutorialModal = document.getElementById("tutorialModal");
+const resultModal = document.getElementById("resultModal");
+const bankContainer = document.getElementById("bankContainer");
+const bankTab = document.getElementById("bankTab");
+const numBankDiv = document.getElementById("numBank");
 
 //BUTTON DEFINITIONS
-const clear = document.getElementById("clearGrid")
-const generate = document.getElementById("generatePuzzle")
-const answer = document.getElementById("answerCheck")
-let isActive = answer.classList.contains("active")
-isActive = false
-const close = document.getElementById("close")
-const howTo = document.getElementById("howTo")
+const clear = document.getElementById("clearGrid");
+const generate = document.getElementById("generatePuzzle");
+const answer = document.getElementById("answerCheck");
+let isActive = answer.classList.contains("active");
+isActive = false;
+const close = document.getElementById("close");
+const howTo = document.getElementById("howTo");
 
 //GLOBAL DEFINITIONS
 const totalCells = 13;
-let moveDirection = "horizontal"
+let moveDirection = "horizontal";
+let errorModalShown = false;
 
 //for parameters
-let myBank
+let myBank;
 
 //arrays 
 let puzzlePatterns = [
@@ -345,10 +346,10 @@ let puzzlePatterns = [
 [1,1,1,0,1,1,1,1,1,0,1,1,1],
 [1,1,1,0,0,1,1,1,0,0,1,1,1]
   ]
-]
+];
 
-let answerKey = []
+let answerKey = [];
 
-let highlightedCells = []
+let highlightedCells = [];
 
-let gridArray = []
+let gridArray = [];

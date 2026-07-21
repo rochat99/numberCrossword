@@ -1,6 +1,7 @@
-const resultModal = document.getElementById("resultModal");
-
 function checkCompletion() {
+
+  let hasWrong = false;
+
   for (let row = 0; row < 13; row++) {
     for (let col = 0; col < 13; col++) {
       
@@ -13,14 +14,23 @@ function checkCompletion() {
       if (userInput === "") return;
       
       if (answerKey[row][col] !== Number(userInput)) {
-        //error modal
-        return
+        hasWrong = true;
       }
     }
   }
-  
-  //completion modal
+
+  if (hasWrong) {
+    if (!errorModalShown) {
+
+      errorModalShown = true;
+      //show error modal
+
+    }
+  } else {
+
+    // show winning modal
+
+  }
 }
 
-//check for completion on input 
-section.addEventListener("input", function(){})
+section.addEventListener("input", checkCompletion)

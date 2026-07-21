@@ -25,6 +25,7 @@ function generatePuzzle() {
   gridArray = []
   puzzleIndex = randomizer()
   let currentPattern = puzzlePatterns[puzzleIndex]
+  errorModalShown = false
   
   for (let row = 0; row < totalCells; row++) {
     let rowArray = [];
