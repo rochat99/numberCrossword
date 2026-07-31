@@ -16,7 +16,11 @@
   
   <!--DIALOGS-->
   <dialog id="tutorialModal">
-    <button id="close">x</button>
+    <div id="tutorialHeader">
+      <button id="closeBtn">x</button>
+      <h3>Tutorial</h3>
+    </div>
+    
     <p>Using the numbers in the number bank, fill out the puzzle! Each number has its own place.</p>
     <p>If a number turns red, it means that number doesn't exist in the number bank.</p>
     <p>Numbers in the bank will grey out once they've been used.</p>
@@ -24,7 +28,20 @@
     <p>Click space to switch directions.</p>
   </dialog>
   
-  <dialog id="resultModal"></dialog>
+  <dialog id="winModal">
+    <h3>You did it!</h3>
+    <p>Congrats on solving the puzzle!</p>
+    <button id="newGameBtn">New Game</button>
+  </dialog>
+  
+  <dialog id="loseModal">
+    <h3>So close!</h3>
+    <p>You still gave some wrong answers...</p>
+    <div>
+      <button id="tryAgainBtn">Try Again</button>
+      <button id="showMistakesBtn">Show Mistakes</button>
+    </div>
+  </dialog>
   
   <header>
     

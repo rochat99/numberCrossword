@@ -4,10 +4,30 @@
 howTo.addEventListener("click", function() {
   tutorialModal.showModal()
 })
-
-close.addEventListener("click", function() {
+closeBtn.addEventListener("click", function() {
   tutorialModal.close()
 })
+
+//win modal - new game
+newGameBtn.addEventListener("click", function() {
+  winModal.close()
+  generatePuzzle()
+})
+
+//lose modal - try again + show mistakes
+tryAgainBtn.addEventListener("click", function() {
+  loseModal.close()
+})
+
+showMistakesBtn.addEventListener("click", function() {
+  loseModal.close()
+  
+  if (!isActive) {
+    answerCheck()
+  }
+})
+
+
 
 //randomly selects one of the puzzle options
 function randomizer() {
@@ -25,6 +45,7 @@ function generatePuzzle() {
   gridArray = []
   puzzleIndex = randomizer()
   let currentPattern = puzzlePatterns[puzzleIndex]
+  errorModalShown = false
   
   for (let row = 0; row < totalCells; row++) {
     let rowArray = [];
@@ -99,7 +120,7 @@ function answerCheck() {
   
   answer.classList.toggle("active")
   
-  if (isActive === true) {
+  if (isActive) {
     isActive = false
     answer.innerHTML = "Check: Off"
   } else {
