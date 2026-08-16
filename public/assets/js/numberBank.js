@@ -258,12 +258,12 @@ bankTab.addEventListener("touchend", function(e) {
   
   if (touchToOpenCheck && isOpen === false) {
     
-    bankContainer.style.transform = "translate(-50%, -3%)"
+    bankContainer.style.transform = "translateY(-91vh)"
     isOpen = true
     
   } else if (touchToCloseCheck && isOpen === true) {
     
-    bankContainer.style.transform = "translate(-50%, 100%)"
+    bankContainer.style.transform = "translateY(0)"
     isOpen = false
   }
 })

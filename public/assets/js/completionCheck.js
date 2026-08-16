@@ -1,5 +1,4 @@
 function checkCompletion() {
-
   let hasWrong = false;
 
   for (let row = 0; row < 13; row++) {
@@ -10,7 +9,6 @@ function checkCompletion() {
       let userInput = input.value.trim();
     
       if (input.disabled === true) continue;
-      
       if (userInput === "") return;
       
       if (answerKey[row][col] !== Number(userInput)) {
@@ -18,19 +16,20 @@ function checkCompletion() {
       }
     }
   }
-
   if (hasWrong) {
     if (!errorModalShown) {
-
       errorModalShown = true;
-      //show error modal
-
+      setTimeout(
+        () => {
+          loseModal.showModal()
+      }, 500)
     }
   } else {
-
-    // show winning modal
-
+    setTimeout(() => {
+      winModal.showModal()
+    }, 500)
   }
 }
 
+//check for completion on input 
 section.addEventListener("input", checkCompletion)

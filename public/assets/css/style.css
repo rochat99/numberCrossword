@@ -38,14 +38,19 @@ header > h2 {
   text-decoration: underline;
 }
 
-#tutorialModal {
+#tutorialModal, #winModal, #loseModal {
   width: 80vw;
   padding: 15px 20px 20px 20px;
   border: 5px solid var(--green);
   border-radius: 20px;
 }
 
-#tutorialModal::backdrop {
+#winModal, #loseModal {
+  align-items: center;
+  text-align: center;
+}
+
+#tutorialModal::backdrop, #winModal::backdrop, #loseModal::backdrop {
   background-color: rgba(0,0,0,0.5);
   backdrop-filter: blur(1px);
 }
@@ -54,18 +59,33 @@ header > h2 {
   margin: 0;
 }
 
-#close {
+#tutorialHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: var(--green);
+  margin: -15px -20px 15px -20px;
+  padding: 5px 10px;
+}
+
+#tutorialHeader > button {
+  margin: 0;
   font-size: 1.3rem;
   font-style: bold;
   background-color: transparent;
   border: none;
-  margin: -20px 0 10px -10px;
   color: black;
   transition: color 0.2s ease;
   box-shadow: none;
+  padding-bottom: 8px;
 }
 
-#close:hover {
+#tutorialHeader > h3 {
+  margin: 0;
+  margin-left: 22%;
+}
+
+#closeBtn:hover {
   color: var(--red);
   transition: color 0.2s ease;
 }
@@ -196,9 +216,8 @@ button:hover {
   max-height: 90vh;
   box-shadow: var(--shadow);
   
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 100%);
+  top: 100vh;
+  left: 5vw;
   
   transition: transform 0.7s ease;
 }
@@ -269,6 +288,11 @@ button:hover {
 
 h2 {
   margin: 0;
+}
+
+h3 {
+  margin: 0;
+  text-align: center;
 }
 
 h4 {

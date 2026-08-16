@@ -17,32 +17,39 @@ document.addEventListener("DOMContentLoaded", () => {
   generatePuzzle();
 });
 
-//DIVS + CONTAINERS
-const section = document.getElementById("boxes");
-const tutorialModal = document.getElementById("tutorialModal");
-const resultModal = document.getElementById("resultModal");
-const bankContainer = document.getElementById("bankContainer");
-const bankTab = document.getElementById("bankTab");
-const numBankDiv = document.getElementById("numBank");
+//MODALS
+const tutorialModal = document.getElementById("tutorialModal")
+const winModal = document.getElementById("winModal");
+const loseModal = document.getElementById("loseModal")
+
+//DIVS
+const section = document.getElementById("boxes")
+const bankContainer = document.getElementById("bankContainer")
+const bankTab = document.getElementById("bankTab")
+const numBankDiv = document.getElementById("numBank")
+
 
 //BUTTON DEFINITIONS
-const clear = document.getElementById("clearGrid");
-const generate = document.getElementById("generatePuzzle");
-const answer = document.getElementById("answerCheck");
-let isActive = answer.classList.contains("active");
-isActive = false;
-const close = document.getElementById("close");
-const howTo = document.getElementById("howTo");
+const clear = document.getElementById("clearGrid")
+const generate = document.getElementById("generatePuzzle")
+const answer = document.getElementById("answerCheck")
+let isActive = answer.classList.contains("active")
+isActive = false
+const closeBtn = document.getElementById("closeBtn")
+const howTo = document.getElementById("howTo")
+const newGameBtn = document.getElementById("newGameBtn")
+const tryAgainBtn = document.getElementById("tryAgainBtn")
+const showMistakesBtn = document.getElementById("showMistakesBtn")
 
 //GLOBAL DEFINITIONS
 const totalCells = 13;
-let moveDirection = "horizontal";
-let errorModalShown = false;
+let moveDirection = "horizontal"
+let errorModalShown = false
 
-//for parameters
-let myBank;
+//PARAMATERS
+let myBank
 
-//arrays 
+//ARRAYS 
 let puzzlePatterns = [
   [
     [1,1,1,0,0,1,1,1,0,0,1,1,1],
@@ -346,10 +353,7 @@ let puzzlePatterns = [
 [1,1,1,0,1,1,1,1,1,0,1,1,1],
 [1,1,1,0,0,1,1,1,0,0,1,1,1]
   ]
-];
-
-let answerKey = [];
-
-let highlightedCells = [];
-
-let gridArray = [];
+]
+let answerKey = []
+let highlightedCells = []
+let gridArray = []
