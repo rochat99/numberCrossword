@@ -6,6 +6,7 @@
 /*VARIABLES*/
 :root {
   --red: #B11148;
+  --redTransparent: #B1114880;
   --darkRed: #FF00004D;
   --green: #A5D0D0;
   --greenTransparent: #A5D0D020;
@@ -18,6 +19,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: var(--greenTransparent);
+  margin: 0;
 }
 
 /*HEADER*/
@@ -63,6 +65,7 @@ header > h2 {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   background-color: var(--green);
   margin: -15px -20px 15px -20px;
   padding: 5px 10px;
@@ -81,8 +84,9 @@ header > h2 {
 }
 
 #tutorialHeader > h3 {
+  text-align: center;
+  flex: 1;
   margin: 0;
-  margin-left: 22%;
 }
 
 #closeBtn:hover {
@@ -98,15 +102,15 @@ header > h2 {
 
 #boxes {
   display: grid;
-  grid-template-columns: repeat(13,1fr);
-  grid-template-rows: repeat(13,1fr);
+  grid-template-columns: repeat(13, minmax(0, 1fr));
+  grid-template-rows: repeat(13, minmax(0, 1fr));
   
   width: 90vw;
   
   border-radius: 10px;
   aspect-ratio: 1/1;
   
-  border: solid 1px var(--darkGreen);
+  /* border: solid 1px var(--darkGreen); */
   background-color: white;
   box-shadow: var(--shadow);
 }
@@ -116,13 +120,18 @@ header > h2 {
 #boxes .cell:nth-child(157) {border-bottom-left-radius: 8.5px;}
 #boxes .cell:last-child {border-bottom-right-radius: 8.5px;}
 
+
+
+.cell:has([data-row="12"]) {border-bottom: solid 2px var(--darkGreen);}
+.cell:has([data-col="12"]) {border-right: solid 2px var(--darkGreen);}
+.cell:has([data-row="0"]) {border-top: solid 2px var(--darkGreen);}
+.cell:has([data-col="0"]) {border-left: solid 2px var(--darkGreen);}
+
 .cell {
   display: flex;
   justify-content: center;
   align-items: center;
   border: solid 1px var(--darkGreen);
-  width: 100%;
-  height: 100%;
   aspect-ratio: 1/1;
 }
 
@@ -200,6 +209,10 @@ button:hover {
   background-color: var(--red);
 }
 
+#answerCheck.active:hover {
+  background-color: var(--redTransparent);
+}
+
 
 /*NUMBER BANK*/
 #bankContainer {
@@ -223,13 +236,6 @@ button:hover {
 }
 
 #bankHeader {
-  background-color: var(--darkGreen);
-  width: 100%;
-  height: 100%;
-  padding: 8px 0;
-  text-align: center;
-  border-radius: 5px 5px 0 0;
-  
   display: none;
 }
 
@@ -277,13 +283,16 @@ button:hover {
 
 #numBank {
   column-count: 3;
+  column-fill: auto;
+  flex: 1;
+  min-height: 0;
   gap: 20px;
   text-align: left;
   margin-top: 20px;
 }
 
-.lengthGroup:nth-child(1) {
-  margin-top: -23px;
+.lengthGroup:nth-child(1) h4 {
+  margin-top: 0;
 }
 
 h2 {
@@ -297,7 +306,10 @@ h3 {
 
 h4 {
   font-size: .9rem;
-  margin-bottom: -15px;
+  margin-bottom: -8px;
+  margin-top: 8px;
+  border-bottom: 1.5px solid black;
+  break-after: avoid;
 }
 
 p, a {
@@ -324,6 +336,11 @@ ul {
 }
 
 @media screen and (min-width:650px) {
+
+  #tutorialModal, #winModal, #loseModal {
+    width: 40vw;
+    padding: 15px 20px 20px 20px;
+  }
 
   header {
     width: 50vw;
@@ -365,6 +382,7 @@ ul {
   #buttons {
     width: 50vw;
     justify-content: center;
+    margin-bottom: 0;
   }
 
  /* #bankContainer {
@@ -373,28 +391,41 @@ ul {
   }*/
   
   #bankContainer {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  background-color: white;
-  border: solid 5px var(--darkGreen);
-  border-radius: 20px;
-  padding-bottom: 20px;
-  width: 45vw;
-  margin: 0 auto;
-  box-shadow: var(--shadow);
-}
+    position: relative;
+    justify-content: flex-end;
+    width: 45vw;
+    margin: -10vh auto 0;
+    top: 0;
+    left: 0;
+    padding-bottom: 8px;
+  }
+
+  #bankHeader {
+    display: flex;
+    justify-content: center;
+    background-color: var(--darkGreen);
+    width: 100%;
+    height: 50px;
+    padding: 8px 0;
+    text-align: center;
+    border-radius: 5px 5px 0 0;
+  }
+
+  #bankHeader > h2 {
+    height: 30px;
+  }
+
+  #bankTab {
+    display: none;
+  }
+
 
   #numBank {
-  column-count: 4;
   width: 80%;
-  height: 100%;
-}
+  }
 
   li {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   h4 {
