@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "lite-server --baseDir=\"public\""
+    "start": "lite-server --baseDir=\"docs\""
   },
   "name": "numbercrossword",
   "version": "1.0.0",
