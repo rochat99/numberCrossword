@@ -255,10 +255,11 @@ bankTab.addEventListener("touchend", function(e) {
   
   let touchToOpenCheck = e.changedTouches[0].clientY < startY - 20 || e.changedTouches[0].clientY === startY
   let touchToCloseCheck = e.changedTouches[0].clientY > startY + 20 || e.changedTouches[0].clientY === startY
+  let containerSize = bankContainer.getBoundingClientRect()
   
   if (touchToOpenCheck && isOpen === false) {
     
-    bankContainer.style.transform = "translateY(-91vh)"
+    bankContainer.style.transform = `translateY(${(containerSize.height * -1)-10}px)`
     isOpen = true
     
   } else if (touchToCloseCheck && isOpen === true) {
